@@ -4,9 +4,19 @@ Returns: a List of integers
 '''
 def product_of_all_other_numbers(arr):
     # Your code here
-
-    pass
-
+    multiply = [0] * len(arr)
+    multiply[-1] = arr[-1]
+    for i in range(1, len(arr)):
+        multiply[len(arr)-i-1] = multiply[len(arr)-i] * arr[len(arr)-i-1]
+    output = [0]*len(arr)
+    prefix = 1
+    current_index = 0
+    while current_index < len(output)-1:
+      output[current_index] = prefix * multiply[current_index+1]
+      prefix *= arr[current_index]
+      current_index += 1
+    output[-1] = prefix
+    return output
 
 if __name__ == '__main__':
     # Use the main function to test your implementation
